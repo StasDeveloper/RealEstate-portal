@@ -1,0 +1,14 @@
+<!--FREE 30 days trial button: action to PayPal START-->
+        <div class="startPayPalProcess">
+            <button form="paypal-submit-form-trial" data-paypal-form-id="67XJ2X5TRKHCN" class="btn btn-success btn-lg btn-block" type="submit">
+                Start my FREE 30 Day Trial NOW!
+            </button>
+        </div>
+<!--FREE 30 days trial button: action to PayPal END-->
+<!--Full Access Button: action to PayPal START-->
+        <div class="startPayPalProcess">
+            <button form="paypal-submit-form" data-paypal-form-id="1" class="btn btn-success btn-lg btn-block" type="submit">
+                Full Access NOW!
+            </button>
+        </div>
+<!--Full Access Button: action to PayPal END-->

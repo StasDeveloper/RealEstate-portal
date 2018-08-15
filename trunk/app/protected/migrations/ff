@@ -1,0 +1,13 @@
+class m150229_1059355_create_ extends CDbMigration
+
+{
+
+    public function up()
+
+    {
+
+        $this->createTable('{{}}', [
+'stid' => 'integer',
+'state_name' => 'string',
+'state_code' => 'string',
+'country_id' => 'integer',

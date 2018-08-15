@@ -1,0 +1,41 @@
+# Som
+*/3 * * * * /home/som/proftpd.sh >/dev/null
+
+
+#gets lat and long from google
+0 1 * * * php /var/www/html/irradii.com/crons/admin/properties.php -tdifferential
+#som every day from 06:00 hrs to 10:00 hrs with an interval of every minute
+
+#Duplicate entries removal havng same mls ids
+1-4,6-14,16-29,31-44,46-58 6-9 * * * php /var/www/html/irradii.com/crons/admin/admin_update_property_lat_lon_cron_aws.php
+#som everyday Once at 06:00 hrs.
+
+#Duplicate property address entries removal.
+00 6 * * * php /var/www/html/irradii.com/crons/admin/cron_duplicate_mls.php 
+#som everyday Once at 7:00 hrs
+
+5 6 * * * php /var/www/html/irradii.com/crons/admin/cron_duplicate_property.php 
+#som everyday once at 03:00 hrs
+
+#Updates the estimated prices based on new records in the zipcode
+4,6,10,12,16,18,22,24,26,30,32,36,38,40,44,46,48,50,52,54 9-17 * * * php /var/www/html/irradii.com/crons/admin/update_estimated_price_cron_for_aws.php 
+#som everyday from 10:00 hrs to 15:00 hrs every 2 minutes
+
+# move to sphinx
+#20 * * * * indexer --rotate --all
+
+
+@midnight /var/www/html/irradii.com/trunk/app/protected/yiic cronmarketinfo
+
+0 1 * * * php /var/www/html/irradii.com/crons/admin/properties.php -tproperty
+
+# Alexx not needed 
+#02 4 * * *  /var/www/html/irradii.com/trunk/app/protected/yiic setNewPhoto
+
+#8,10,12,16,18,20,24,26,28,32,34,38,40,44,46,48,52,54 0,18-23 * * * php /var/www/html/irradii.com/crons/admin/update_estimated_price_cron_for_aws.php 
+
+#Run PropertyInfo model events
+23 * * * * php /var/www/html/irradii.com/trunk/app/protected/yiic CronPropertyInfoEventRunner
+
+#email alerts sender
+25 * * * * php /var/www/html/irradii.com/trunk/app/protected/yiic CronEmailAlertsSender

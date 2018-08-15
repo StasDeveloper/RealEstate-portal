@@ -1,0 +1,251 @@
+<?php
+
+class User extends CActiveRecord {
+    public $state;
+    public $street_number;
+    public $street_address;
+    public $country;
+    public $city;
+    public $zipcode;
+    public $avatar_image;
+    public $company_logo;
+    public $certifications;
+    protected $professions_array;
+
+    const STATUS_NOACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_BANNED = -1;
+    //TODO: Delete for next version (backward compatibility)
+    const STATUS_BANED = -1;
+
+    /**
+     * The followings are the available columns in table 'users':
+     * @var integer $id
+     * @var string $username
+     * @var string $password
+     * @var string $email
+     * @var string $activkey
+     * @var integer $createtime
+     * @var integer $lastvisit
+     * @var integer $superuser
+     * @var integer $status
+     * @var timestamp $create_at
+     * @var timestamp $lastvisit_at
+     */
+
+    /**
+     * Returns the static model of the specified AR class.
+     * @return CActiveRecord the static model class
+     */
+    public static function model($className = __CLASS__) {
+        return parent::model($className);
+    }
+
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName() {
+        return Yii::app()->getModule('user')->tableUsers;
+    }
+
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules() {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.CConsoleApplication
+        return ((get_class(Yii::app()) == 'CConsoleApplication' || (get_class(Yii::app()) != 'CConsoleApplication' && Yii::app()->getModule('user')->isAdmin())) ? array(
+                    
+                    array('password', 'length', 'max' => 128, 'min' => 4, 'message' => UserModule::t("Incorrect password (minimal length 4 symbols).")),
+                    array('username', 'email', 'message' => UserModule::t("This user's email must be input as follows xxx@xxx.xxx.")),
+                    
+                    array('username', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
+                    
+                    array('status', 'in', 'range' => array(self::STATUS_NOACTIVE, self::STATUS_ACTIVE, self::STATUS_BANNED)),
+                    array('superuser', 'in', 'range' => array(0, 1)),
+                    array('create_at', 'default', 'value' => date('Y-m-d H:i:s'), 'setOnEmpty' => true, 'on' => 'insert'),
+                    array('lastvisit_at', 'default', 'value' => '0000-00-00 00:00:00', 'setOnEmpty' => true, 'on' => 'insert'),
+                    //array('username, email, superuser, status', 'required'),
+                    array('username, superuser, status', 'required'),
+                    array('superuser, status', 'numerical', 'integerOnly' => true),
+                    array('state, country, city,  zipcode, street_number, street_address', 'safe'),
+                    //array('zipcode', 'numerical', 'integerOnly' => true),
+                    array('id, username, password, activkey, create_at, lastvisit_at, superuser, status, state_name, country, city,  zipcode', 'safe', 'on' => 'search'),
+            array('professionsArray', 'safe'),
+             
+    
+                    array('avatar_image, company_logo, certifications', 'file', 'types'=>'jpg, gif, png','allowEmpty'=>true),
+                        ) : ((Yii::app()->user->id == $this->id) ? array(
+                            array('state, country, city,  zipcode, street_number, street_address', 'safe'),
+                            //array('zipcode', 'numerical', 'integerOnly' => true),
+                            array('avatar_image, company_logo, certifications', 'file', 'types'=>'jpg, gif, png','allowEmpty'=>true),
+                            array('username', 'required'),
+                            
+                            array('username', 'email', 'message' => UserModule::t("This user's email must be input as follows xxx@xxx.xxx.")),
+                           
+                            array('username', 'unique', 'message' => UserModule::t("This user's email address already exists.")),
+                                ) : array()));
+    }
+
+    /**
+     * @return array relational rules.
+     */
+    public function relations() {
+//        $relations = Yii::app()->getModule('user')->relations;
+//            $relations['profile'] = array(self::HAS_ONE, 'TblUsersProfiles', 'mid');
+//            $relations['profession'] = array(self::HAS_MANY, 'TblAuthAssignment', 'userid');
+//        return $relations;
+        return array(
+            'profile' => array(self::HAS_ONE, 'TblUsersProfiles', 'mid'),
+            'profession' => array(self::HAS_MANY, 'TblAuthAssignment', 'userid'),
+
+//            'many_professions' => array(self::MANY_MANY, 'TblAuthAssignment', 'tbl_AuthAssignment(userid, itemname)'),
+
+            'property_info' => array(self::HAS_MANY, 'PropertyInfo', 'mid'),
+            'saved_agent' => array(self::HAS_MANY, 'SavedAgent', 'agent_id'),
+            'zip_n' => array(self::HAS_ONE, 'Zipcode', array('zipcode'=>'zip_id'), 'through'=>'profile' ),
+            'city_n' => array(self::HAS_ONE, 'City', array('cityid'=>'cityid'), 'through'=>'zip_n'),
+            'county_n' => array(self::HAS_ONE, 'County', array('county_id'=>'county_id'), 'through'=>'city_n' ),
+            'state_n' => array(self::HAS_ONE, 'State', array('state_id'=>'stid'), 'through'=>'county_n'),
+//            'profile_saved_agent' => array(self::HAS_ONE, array('mid'=>'agent_id'), 'through'=>'SavedAgent'),
+        );
+    }
+
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels() {
+        return array(
+            'id' => UserModule::t("Id"),
+            'username' => UserModule::t("E-mail"),
+            'password' => UserModule::t("password"),
+            'verifyPassword' => UserModule::t("Retype Password"),
+            //'email'=>UserModule::t("E-mail"),
+            'verifyCode' => UserModule::t("Verification Code"),
+            'activkey' => UserModule::t("activation key"),
+            'createtime' => UserModule::t("Registration date"),
+            'create_at' => UserModule::t("Registration date"),
+            'lastvisit_at' => UserModule::t("Last visit"),
+            'superuser' => UserModule::t("Superuser"),
+            'status' => UserModule::t("Status"),
+            'state'=> UserModule::t("State Name"),
+            'country' => UserModule::t("Country"),
+            'city' => UserModule::t("City"), 
+            'zipcode'=> UserModule::t("Zip code"),
+            'avatar_image'=> UserModule::t("Profile Photo"),
+            'company_logo'=> UserModule::t("Company Logo"),
+            'certifications' => UserModule::t("Badges and Certifications"),
+            'street_address' => UserModule::t("Street Address"),
+            'street_number' => UserModule::t("Street Number"),
+        );
+    }
+
+    public function scopes() {
+        return array(
+            'active' => array(
+                'condition' => 'status=' . self::STATUS_ACTIVE,
+            ),
+            'notactive' => array(
+                'condition' => 'status=' . self::STATUS_NOACTIVE,
+            ),
+            'banned' => array(
+                'condition' => 'status=' . self::STATUS_BANNED,
+            ),
+            'superuser' => array(
+                'condition' => 'superuser=1',
+            ),
+            'notsafe' => array(
+                'select' => 'id, username, password, activkey, create_at, lastvisit_at, superuser, status',
+            ),
+        );
+    }
+
+    public function defaultScope() {
+        return CMap::mergeArray(Yii::app()->getModule('user')->defaultScope, array(
+                    'alias' => 'user',
+                    'select' => 'user.id, user.username, user.create_at, user.lastvisit_at, user.superuser, user.status',
+        ));
+    }
+
+    public static function itemAlias($type, $code = NULL) {
+        $_items = array(
+            'UserStatus' => array(
+                self::STATUS_NOACTIVE => UserModule::t('Not active'),
+                self::STATUS_ACTIVE => UserModule::t('Active'),
+                self::STATUS_BANNED => UserModule::t('Banned'),
+            ),
+            'AdminStatus' => array(
+                '0' => UserModule::t('No'),
+                '1' => UserModule::t('Yes'),
+            ),
+        );
+        if (isset($code))
+            return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
+        else
+            return isset($_items[$type]) ? $_items[$type] : false;
+    }
+
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search() {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
+        $criteria->compare('password', $this->password);
+        //$criteria->compare('email',$this->email,true);
+        $criteria->compare('activkey', $this->activkey);
+        $criteria->compare('create_at', $this->create_at);
+        $criteria->compare('lastvisit_at', $this->lastvisit_at);
+        $criteria->compare('superuser', $this->superuser);
+        $criteria->compare('status', $this->status);
+
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->getModule('user')->user_page_size,
+            ),
+        ));
+    }
+
+    public function getCreatetime() {
+        return strtotime($this->create_at);
+    }
+
+    public function setCreatetime($value) {
+        $this->create_at = date('Y-m-d H:i:s', $value);
+    }
+
+    public function getLastvisit() {
+        return strtotime($this->lastvisit_at);
+    }
+
+    public function setLastvisit($value) {
+        $this->lastvisit_at = date('Y-m-d H:i:s', $value);
+    }
+
+    public function afterSave() {
+
+        if (get_class(Yii::app()) == 'CWebApplication' && TblUsersProfiles::$regMode == false) {
+            Yii::app()->user->updateSession();
+        }
+        return parent::afterSave();
+    }
+
+    public function getProfessionsArray(){
+        if($this->professions_array === null){
+            $this->professions_array = CHtml::listData($this->profession, 'itemname', 'itemname');
+        }
+        return $this->professions_array;
+    }
+
+    public function setProfessionsArray($value){
+        $this->professions_array = $value;
+    }
+
+}

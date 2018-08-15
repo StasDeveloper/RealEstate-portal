@@ -1,0 +1,30 @@
+CHANGING STYLE (.CSS) AND SCRIPTS (.JS) FILES
+After changing .css or .js files, GRUNT command must be run:
+    - navigate to {project}/trunk
+    - run command: sudo grunt
+
+EDITING sphinx.conf file:
+Real sphinx.conf file that is used for command "indexer --rotate --all" is stored in /etc/sphinxsearch folder and this file isn't a part of project and isn't tracked by GIT.
+Actual copy of real sphinx.conf file stored in the project in {project-folder}/src/configs folder. This copy file is tracked by GIT.
+
+For expanding project:
+
+Requires:
+	1)Install Sphinx 2.1.8 or 2.1.9,
+	-Replace config file sphinx.conf in  /etc/sphinxsearch/;
+	
+	2)Install Redis;
+
+	3)Install Memcached;
+
+	4)Install PHP5 GD Library.
+
+Insert files console.php and main.php in folder {ProjectDir}/src/configs/
+	-in file main.php change the settings to connect to the DB.
+
+Insert file hoauth.php in {ProjectDir}/trunk/app/protected/config
+
+Set chmod 777 {ProjectDir}/trunk/app/protected/runtime/
+
+Download DB from Amazon->S3->props3backups->live->*last backup* 
+	-import database to mysql server.

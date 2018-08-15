@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://irradii.com/sitemap.xml

@@ -1,0 +1,21 @@
+{
+  "name": "irradii.com",
+  "description": "Dependent packages",
+  "main": "index.php",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.0.0",
+    "bootstrap": "~3.0.x",
+    "font-awesome": "^4.6.3",
+    "jquery-ui": "^1.12.1",
+    "underscore": "^1.8.3"
+  }
+}

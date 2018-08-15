@@ -1,0 +1,282 @@
+Here is my proposed layout for the use of the fields in the market trend
+table. Please review and let me know your thoughts on the best way to make
+this work. I’ve also attached a script and sketch, let me know if you have
+any questions. Thanks.
+
+
+
+
+
+1.     Instead of market_trend = .1 that we currently have, we will use the
+market_trend_table to find two values (fundamentals_factor and
+conditional_factor) to use in its place.
+
+2.     We will add a step near the end of the properties.php script to
+assign a fundamentals_factor and conditional_factor to each property record.
+
+3.     These will be inserted in the respective fields in the property_info
+table.
+
+4.     In the properties.php script, for each property record we will
+search the market_trend_table for the best set of matching conditions. Some
+records may have 3 or more matches (the best) others may have two matches,
+or only one. The row in the table that best matches the property record will
+prevail. Your thoughts on what we do if more than one row matches a
+property, then the row with the highest factor values prevails?
+
+5.     I will upload the initial set of factors and then update them on a
+monthly basis. We will build a cron job to help with this later.
+
+
+
+
+
+
+
+property_type   tinyint(3)                                    this will be
+any of our current property_type = 1,2,3,4,5,6,7,9,16
+
+
+
+property_zipcode          int(8)                             this will be
+used to match the 5 digit property_info_property_zipcode, if this field is
+blank, then the search applies to all zipcodes in the db.
+
+
+
+t_count int(11)                                                   a second
+cron job will update this - this is the number of records from the
+property_info tables that match the criteria in this record
+
+
+
+avg_percentage_diff     decimal(5,2)                  a second cron job
+will also update this - this is the average percentage_depreciation_value of
+all records from the property_info table that match. I will use this to
+improve the factors (if a certain row is consistently 1% undervalue then I
+will increase the factors to adjust +1%)
+
+
+
+fundamentals_factor      decimal(5,2)                  this will be a
+number ( like 0.15) that will represent the new center of our estimated
+value. Exactly in the middle of our low_range and high range by adding or
+subtract one t_score standard deviation. We will need to make a slight
+adjustment in the script, see rough version attached.
+
+
+
+conditional_factor         decimal(5,2)                  this will be a
+number ( like -0.13 which is minus 13%) that will move away from the center
+fundamentals_factor based on the present condition of the home. For example
+a home with over_all_property containing ‘excellent’ is currently valued
+higher than average, so we would take the fundamentals_factor and add 13%.
+
+For example a home with foreclosure = ‘yes’ is currently valued less than
+average, so we would take the fundamentals_factor and subtract 13%.
+
+There will be instances where two conditions or fundamentals will offset
+eachother (one positive and one negative) so the overall factor may only be
+0.01.
+
+This market_trend_table will allow me to dial in the true value of each
+factor for specifica zipcodes and allow me to adjust them over time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+I want to make sure you understand what we are doing, so here are some
+examples of the influences each factor may have. A row with more than one
+factor will have an averaging effect. I don’t think there will be many rows
+with more than 4 fields.
+
+
+
+
+
+
+
+
+
+Fundamentals_factor are permanent features of a home, like being on the
+beach or golf course. These homes have a permanently higher average value
+then a regular home, so the fundamentals_factor move the average to a new
+centerpoint.
+
+
+
+Conditional_factorsConditional_factors are conditions on a property that can easily be
+changed, like landscaping, painting, foreclosure, etc. That’s why this
+conditional_factor is not at the center of the value. I know if I renovate
+the home I can move it from near the low_range up to near the high_range.
+
+
+
+
+
+compass_point enum('', 'South', 'North', 'West', 'East')
+
+house_faces     enum('', 'South', 'North', 'West', 'East'
+
+house_views     varchar(100)
+
+street_name      varchar(50)
+
+pool     tinyint(4)
+houses with pools are valued higher than average, so this will be a positive
+fundamentals_factor.
+
+spa       enum('No', 'Yes')
+houses with spas are valued higher than average, so this will be a positive
+fundamentals_factor.
+
+stories  varchar(30)
+
+lot_description  varchar(100)
+
+building_description
+
+carport_type     enum('', 'Attached Carport', 'Detached Carport')
+
+converted_garage         enum('No', 'Yes')
+
+exterior_structure           varchar(10)
+
+roof      varchar(100)
+
+electrical_system           varchar(100)
+houses with ‘solar’ are valued higher than average, so this will be a
+positive conditional_factor.
+
+plumbing_system          varchar(12)
+
+built_desc         varchar(18)
+
+exterior_grounds           varchar(100)
+
+prop_desc        varchar(128)
+
+over_all_property          varchar(12)
+houses in ‘poor’ condition are valued less than average, so this will be a
+negative conditional_factor.
+
+foreclosure       enum('No', 'Yes')
+
+short_sale         enum('No', 'Yes')
+
+
+
+
+
+
+
+Please review the attached script and graph sketch and let me know if you
+have any questions or see any issues. We can discuss around 5am my time.
+Thanks.
+
+The fundamental and conditional factors for each data type are found in the market trend tables. We want to adjust the factors up or
+ down in order to get the avg_percentage_diff as close to 0 as possible. Of course moving one factor up or down incrementally adjusts
+ the avg_percentage_diff for all properties that include that factor, so as you change one factor it influences all others. 
+Do you think a Cron job can be written for this? Perhaps moving each factor incrementally by some number (0.0001 ?) 
+Until the avg_percentage_diff for all are close to 0?
+
+Just to elaborate a bit more on this, the Cron job would work something like this.
+
+Step 1: add a step to the reload factors Cron job where the script would calculate the average percentage difference from 
+property_info for every sold "closed" property that meets the market trend criteria. 
+
+Step 2: it would then adjust the two factors up or down to attempt to move the average percentage difference to zero. (We have to
+ come up with the amount to move up or down.)
+
+Step 3: using the new adjusted factors, the estimated values would be recalculated again on all properties where status = "closed"
+
+Step 4: using the new estimated values and percentage differences from step 3, a new average percentage difference would 
+be entered into the market trend table. 
+
+Step 5: return to step 2 and start over. trying to get the average percentage difference even closer to zero.
+
+Step 6: continue the cycle of processes until the average difference for all trend table market 
+trend table records are within +\- 1%. (Or some tighter number if we have room for improvement.)
+
+Let's discuss on Skype in the morning.
+
++++++++++
+
+Regarding the Cron job that is going to manipulate the fundamental and conditional factors:
+
+- let's use an example that the average percentage difference is 7.00 for keyword "lake". This tells us that our valuation
+ of the average property in this group is 7% lower than the closed price and our factor needs to be raised. If the current
+ fundamental factor is .1 then we need to raise this by 7% to .107 and reload the factors and run the estimate again. 
+
+- the equation is (existing factor) x ((100+ percentage change) /100)
+
+- I think each time this job runs we will get closer and closer to zero but because each value has multiple factors we will probably
+ never get them all exactly to zero. I hope we can get them all under 1%, but let's set it up and run it a few times to see what the results are. Doing it manually takes me an hour each time so anything we can do to improve that will help. I am hoping after running a 10 or 20 times we can get them all down to under 1%. Let's run it several times to see what the results are before we set a threshold for stopping automatically.
+
++++++++++
+
+ [15:12:08] Kallen Kildea: OK great. I have a significant change I want to discuss quickly. In a previous email I told you how
+ to apply the market_trend_table to the property fundamental and conditional factors.
+[15:12:12] Kallen Kildea: See the attached example. Let’s say that the subject property finds 5 matches = ‘north’, ‘golf’,
+ ‘one story’, ‘poor’, ‘yes’
+
+3 are fundamentals_factor = ‘north’, ‘golf’, ‘one story’
+2 are conditional_factor = ‘poor’, ‘yes’
+
+The calculation of fundamentals_factor would then be = sum((7.1+13.2+1.5)/3)      (or AVERAGE(7.1,13.2,1.5))  =  7.27
+The calculation of conditional_factor would then be = sum((15.5+13.3)/2)               (or AVERAGE(15.5,13.3))     = 14.4
+[15:12:52] Kallen Kildea: Now, I find that it might be better applied if we use the SUM of the factors instead of 
+the AVERAGE, so the application would look like this:
+[15:14:33] Kallen Kildea: The calculation of fundamentals_factor would then be = SUM(7.1+13.2+1.5) =  21.8
+The calculation of conditional_factor would then be = SUM(15.5+13.3) = 28.8
+
+[15:17:32] Kallen Kildea: When we make this change, the estimated values will be wildly inaccurate unitl I get the factors 
+tuned in, so we should turn off email alerts for that time until the estimated values are good again, perhaps a day or so. 
+I can go in and do this manually if it isnt a quick shut off for you. In addition, if this method isn't more accurate than 
+using AVERAGE, then we may need to revert back to using AVERAGE, though I don't expect it.
+
++++++++
+
+[15:36:16] Kallen Kildea: no, check for a match in zipcode first, if not found then use property_zipcode = 0
+
+[15:50:06] Kallen Kildea: For each keywords find match where property_type ==, and zipcode ==, OR 
+if no zipcode match use property_zipcode = 0. Only one match per zipcode. 
+You may have some keywords where zipcode == and other keywords where zipcode =0 grouped within 
+the same sum. 
+(Example 3 keywords found within the zipcode and 2 keywords with property_ziipcode = 0, 
+sum the 5 values together.
+
++++++++++++++++++++++
+
+I need to correct the method I gave you for adjusting market_trend_factors with the goal of making avg_percentage_diff = 0 for each factor. First, make sure that avg_percentage_diff is the average of all property_info. percentage_depreciation_value where property_info.estimated_price >0 and house_vews includes “lake”.
+ 
+Here are four scenarios, please make sure the calculation is working correctly in each. 
+Let's use an example with house_views keyword "lake":
+ 
+·         Current avg_percentage_diff = -7% and fundamental_factor = .1 Our factor needs to be raised by 7% to .107. 
+The equation is (existing factor) x ((100 - percentage change) /100) : (.1) x ((100 - -7)/100)
+
+·         Current avg_percentage_diff = 7% and fundamental_factor = .1 Our factor needs to be lowered by 7% to .093. 
+The equation is (existing factor) x ((100 - percentage change) /100) : (.1) x ((100-7)/100)
+
+ 
+
+The calculation is different when factor < 0:
+
+·         Current avg_percentage_diff = -7% and fundamental_factor = -.1 
+Our factor needs to be raised by 7% to -.093. 
+The equation is (existing factor) x ((100 + percentage change) /100) : (-.1) x ((100+-7)/100)
+
+ 
+
+·         Current avg_percentage_diff = 7% and fundamental_factor = -.1 Our factor needs to be lowered by 7% to -.107. 
+The equation is (existing factor) x ((100 + percentage change) /100) : (.1) x ((100+7)/100)

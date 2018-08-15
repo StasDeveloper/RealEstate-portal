@@ -1,0 +1,1695 @@
+/usr/sbin/mysqld, Version: 5.5.44-0ubuntu0.14.04.1-log ((Ubuntu)). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/mysqld.sock
+Time                 Id Command    Argument
+/usr/sbin/mysqld, Version: 5.5.44-0ubuntu0.14.04.1-log ((Ubuntu)). started with:
+Tcp port: 3306  Unix socket: /var/run/mysqld/mysqld.sock
+Time                 Id Command    Argument
+# Time: 150826 10:17:04
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000698  Lock_time: 0.000600 Rows_sent: 1  Rows_examined: 9
+SET timestamp=1440573424;
+SELECT count(*) FROM mysql.user WHERE user='root' and password='';
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.080467  Lock_time: 0.000088 Rows_sent: 170  Rows_examined: 472
+SET timestamp=1440573424;
+select concat('select count(*) into @discard from `',
+                    TABLE_SCHEMA, '`.`', TABLE_NAME, '`') 
+      from information_schema.TABLES where ENGINE='MyISAM';
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.073011  Lock_time: 0.000142 Rows_sent: 0  Rows_examined: 4612
+SET timestamp=1440573424;
+select count(*) into @discard from `information_schema`.`COLUMNS`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000223  Lock_time: 0.000170 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1440573424;
+select count(*) into @discard from `information_schema`.`EVENTS`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000895  Lock_time: 0.000424 Rows_sent: 0  Rows_examined: 16
+SET timestamp=1440573424;
+select count(*) into @discard from `information_schema`.`PARAMETERS`;
+# Time: 150826 10:17:05
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.848262  Lock_time: 0.000192 Rows_sent: 0  Rows_examined: 472
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`PARTITIONS`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000339  Lock_time: 0.000143 Rows_sent: 0  Rows_examined: 23
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`PLUGINS`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000206  Lock_time: 0.000131 Rows_sent: 0  Rows_examined: 1
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`PROCESSLIST`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.000551  Lock_time: 0.000233 Rows_sent: 0  Rows_examined: 6
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`ROUTINES`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.003465  Lock_time: 0.000183 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`TRIGGERS`;
+# User@Host: debian-sys-maint[debian-sys-maint] @ localhost []
+# Query_time: 0.003544  Lock_time: 0.000138 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1440573425;
+select count(*) into @discard from `information_schema`.`VIEWS`;
+# Time: 150826 10:17:17
+# User@Host: root[root] @ localhost []
+# Query_time: 0.362065  Lock_time: 0.000120 Rows_sent: 1  Rows_examined: 30328
+use bucontra_propertyhookup;
+SET timestamp=1440573437;
+SELECT AVG(property_info.percentage_depreciation_value) as avg_percentage_diff, COUNT(property_info.percentage_depreciation_value) as t_count
+FROM `property_info`
+LEFT JOIN `property_info_details` ON property_info.property_id = property_info_details.property_id
+LEFT JOIN `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+LEFT JOIN `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE property_info.estimated_price >0 AND property_info_additional_brokerage_details.status ='Closed' AND UPPER(`property_info`.`property_status`)='ACTIVE'  AND property_info.property_updated_date>=DATE('2015-07-27') AND (property_type = '1')  AND ((LOWER(fence_type) = LOWER('chain link')));
+# Time: 150826 10:18:35
+# User@Host: root[root] @ localhost []
+# Query_time: 1.242177  Lock_time: 0.000089 Rows_sent: 2838  Rows_examined: 301105
+SET timestamp=1440573515;
+SELECT 
+    `property_info`.`property_id`,
+    `fundamentals_factor`,
+    `conditional_factor`,
+    `property_type`,
+    `property_zipcode`,
+    `compass_point`,
+    `house_faces`,
+    `house_views`,
+    `street_name`,
+    `pool`,
+    `spa`,
+    `stories`,
+    `lot_description`,
+    `building_description`,
+    `carport_type`,
+    `converted_garage`,
+    `exterior_structure`,
+    `roof`,
+    `electrical_system`,
+    `plumbing_system`,
+    `built_desc`,
+    `exterior_grounds`,
+    `prop_desc`,
+    `over_all_property`,
+    `foreclosure`,
+    `short_sale`,
+    `sub_type`,
+
+    `studio`,
+    `condo_conversion`,
+    `association_features_available`,
+    `association_fee_1`,
+    `assessment`,
+    `sidlid`,
+    `parking_description`,
+    `fence_type`,
+    `court_approval`,
+    `bath_downstairs`,
+    `bedroom_downstairs`,
+    `great_room`,
+    `bath_downstairs_description`,
+    `flooring_description`,
+    `furnishings_description`,
+    `heating_features`,
+    `possession_description`,
+    `financing_considered`,
+    `reporeo`,
+    `litigation`
+FROM
+    `property_info`
+LEFT JOIN `property_info_details` USING (`property_id` )
+LEFT JOIN `property_info_additional_details` USING (`property_id` )
+LEFT JOIN `property_info_additional_brokerage_details` USING (`property_id` )
+WHERE
+    UPPER(`property_info`.`property_status`)='ACTIVE' AND
+    property_info.property_id > 0  AND property_info.property_updated_date>=DATE('2015-07-27')  AND property_info.estimated_price >0 AND property_info_additional_brokerage_details.status ='Closed'
+LIMIT 0, 3000;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.003866  Lock_time: 0.000072 Rows_sent: 7  Rows_examined: 8088
+SET timestamp=1440573515;
+SELECT house_views FROM `market_trend_table` `t` WHERE house_views!=''AND house_views IS NOT NULL GROUP BY house_views;
+# Time: 150826 10:18:45
+# User@Host: root[root] @ localhost []
+# Query_time: 0.125989  Lock_time: 0.000164 Rows_sent: 0  Rows_examined: 1880
+SET timestamp=1440573525;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22235
+                           AND `property_info`.`year_biult_id`  BETWEEN '2014'   AND '2016'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.066'   AND '0.154' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1451.25'  AND '2418.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-114.9789906'   AND '-114.9732194'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.0803204'   AND '36.0860916' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5674101';
+# Time: 150826 10:18:54
+# User@Host: root[root] @ localhost []
+# Query_time: 0.195464  Lock_time: 0.000102 Rows_sent: 2  Rows_examined: 5367
+SET timestamp=1440573534;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2000'   AND '2002'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.132'   AND '0.308' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1666.5'  AND '2777.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1877378'   AND '-115.1848522'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2500372'   AND '36.2529228' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5674684';
+# Time: 150826 10:19:17
+# User@Host: root[root] @ localhost []
+# Query_time: 0.117294  Lock_time: 0.000192 Rows_sent: 3  Rows_examined: 5369
+SET timestamp=1440573557;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1999'   AND '2001'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1170'  AND '1950' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1853648'   AND '-115.1824792'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2549852'   AND '36.2578708' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5676188';
+# Time: 150826 10:19:20
+# User@Host: root[root] @ localhost []
+# Query_time: 0.105343  Lock_time: 0.000065 Rows_sent: 0  Rows_examined: 1
+SET timestamp=1440573560;
+UPDATE `property_info` SET `fundamentals_factor`='0.05168376', `conditional_factor`='1.60069345' WHERE `property_info`.`property_id`=5676290;
+# Time: 150826 10:19:30
+# User@Host: root[root] @ localhost []
+# Query_time: 0.131436  Lock_time: 0.000114 Rows_sent: 8  Rows_examined: 5377
+SET timestamp=1440573570;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1999'   AND '2001'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.042'   AND '0.098' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1277.25'  AND '2128.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2077188'   AND '-115.2048332'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2573772'   AND '36.2602628' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5676700';
+# Time: 150826 10:19:59
+# User@Host: root[root] @ localhost []
+# Query_time: 0.111179  Lock_time: 0.000108 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440573599;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.126'   AND '0.294' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1186.5'  AND '1977.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1607368'   AND '-115.1578512'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2516932'   AND '36.2545788' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5678636';
+# Time: 150826 10:20:45
+# User@Host: root[root] @ localhost []
+# Query_time: 0.129501  Lock_time: 0.000086 Rows_sent: 2  Rows_examined: 5365
+SET timestamp=1440573645;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2004'   AND '2006'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2151.75'  AND '3586.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1644828'   AND '-115.1615972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2586202'   AND '36.2615058' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5681065';
+# Time: 150826 10:21:00
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.166524  Lock_time: 0.000136 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440573660;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND UPPER(`property_info`.`property_status`) = 'ACTIVE'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND ((LOWER(fence_type) = LOWER('chain link')))
+LIMIT 0, 1000;
+# Time: 150826 10:21:17
+# User@Host: root[root] @ localhost []
+# Query_time: 0.123661  Lock_time: 0.000131 Rows_sent: 3  Rows_examined: 5367
+SET timestamp=1440573677;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1995'   AND '1997'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.096'   AND '0.224' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1034.25'  AND '1723.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1875158'   AND '-115.1846302'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2572392'   AND '36.2601248' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5682831';
+# Time: 150826 10:21:29
+# User@Host: root[root] @ localhost []
+# Query_time: 0.104322  Lock_time: 0.000101 Rows_sent: 3  Rows_examined: 4473
+SET timestamp=1440573689;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2001'   AND '2003'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.108'   AND '0.252' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1176.75'  AND '1961.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1055308'   AND '-115.1026452'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9535932'   AND '35.9564788' 
+                          AND property_info.bedrooms BETWEEN 1.4  AND 2.6 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5683213';
+# Time: 150826 10:21:40
+# User@Host: root[root] @ localhost []
+# Query_time: 0.144544  Lock_time: 0.000136 Rows_sent: 1  Rows_examined: 5364
+SET timestamp=1440573700;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1991'   AND '1993'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.078'   AND '0.182' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1479.75'  AND '2466.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1650318'   AND '-115.1621462'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2497092'   AND '36.2525948' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5683408';
+# Time: 150826 10:22:59
+# User@Host: root[root] @ localhost []
+# Query_time: 0.127671  Lock_time: 0.000106 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440573779;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.066'   AND '0.154' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1362.75'  AND '2271.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1664588'   AND '-115.1635732'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2655252'   AND '36.2684108' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5689828';
+# Time: 150826 10:23:16
+# User@Host: root[root] @ localhost []
+# Query_time: 0.105592  Lock_time: 0.000215 Rows_sent: 0  Rows_examined: 5362
+SET timestamp=1440573796;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1998'   AND '2000'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1082.25'  AND '1803.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1863178'   AND '-115.1834322'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2514102'   AND '36.2542958' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5691616';
+# Time: 150826 10:23:30
+# User@Host: root[root] @ localhost []
+# Query_time: 0.150770  Lock_time: 0.000119 Rows_sent: 0  Rows_examined: 5362
+SET timestamp=1440573810;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2002'   AND '2004'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.078'   AND '0.182' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1050.75'  AND '1751.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1822828'   AND '-115.1793972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2559462'   AND '36.2588318' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5693151';
+# Time: 150826 10:23:42
+# User@Host: root[root] @ localhost []
+# Query_time: 0.112112  Lock_time: 0.000092 Rows_sent: 0  Rows_examined: 4468
+SET timestamp=1440573822;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2002'   AND '2004'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.108'   AND '0.252' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1377.75'  AND '2296.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1177228'   AND '-115.1148372'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9475962'   AND '35.9504818' 
+                          AND property_info.bedrooms BETWEEN 1.4  AND 2.6 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5693629';
+# Time: 150826 10:23:43
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.108591  Lock_time: 0.000142 Rows_sent: 1  Rows_examined: 32737
+SET timestamp=1440573823;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND UPPER(`property_info`.`property_status`) = 'ACTIVE'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        -- AND ((LOWER(fence_type) = LOWER('chain link')));
+LIMIT 0, 1000;
+# Time: 150826 10:23:45
+# User@Host: root[root] @ localhost []
+# Query_time: 0.124684  Lock_time: 0.000098 Rows_sent: 1  Rows_examined: 5363
+SET timestamp=1440573825;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1996'   AND '1998'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1318.5'  AND '2197.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1789938'   AND '-115.1761082'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2429572'   AND '36.2458428' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5694575';
+# Time: 150826 10:24:03
+# User@Host: root[root] @ localhost []
+# Query_time: 0.114987  Lock_time: 0.000139 Rows_sent: 3  Rows_examined: 4280
+SET timestamp=1440573843;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22279
+                           AND `property_info`.`year_biult_id`  BETWEEN '2014'   AND '2016'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.144'   AND '0.336' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2923.5'  AND '4872.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2373058'   AND '-115.2344202'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2758782'   AND '36.2787638' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 2.1  AND 4.9
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5695402';
+# Time: 150826 10:24:20
+# User@Host: root[root] @ localhost []
+# Query_time: 0.115717  Lock_time: 0.000077 Rows_sent: 0  Rows_examined: 4467
+SET timestamp=1440573860;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2001'   AND '2003'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.126'   AND '0.294' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1599.75'  AND '2666.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1049738'   AND '-115.1020882'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9553942'   AND '35.9582798' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5697908';
+# Time: 150826 10:24:21
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.148011  Lock_time: 0.000121 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440573861;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND UPPER(`property_info`.`property_status`) = 'ACTIVE'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND (fence_type = LOWER('chain link'))
+LIMIT 0, 1000;
+# Time: 150826 10:24:32
+# User@Host: root[root] @ localhost []
+# Query_time: 0.144294  Lock_time: 0.000092 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440573872;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1987'   AND '1989'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.216'   AND '0.504' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1304.25'  AND '2173.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2085808'   AND '-115.2056952'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2401002'   AND '36.2429858' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5698795';
+# Time: 150826 10:24:39
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.145367  Lock_time: 0.000128 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440573879;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND UPPER(`property_info`.`property_status`) = 'ACTIVE'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND (fence_type = 'chain link')
+LIMIT 0, 1000;
+# Time: 150826 10:24:52
+# User@Host: root[root] @ localhost []
+# Query_time: 0.133904  Lock_time: 0.000118 Rows_sent: 1  Rows_examined: 5364
+SET timestamp=1440573892;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.066'   AND '0.154' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1411.5'  AND '2352.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1591428'   AND '-115.1562572'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2507352'   AND '36.2536208' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5700371';
+# Time: 150826 10:25:14
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.219624  Lock_time: 0.000149 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440573914;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND `property_info`.`property_status` = 'Active'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND (fence_type = 'chain link')
+LIMIT 0, 1000;
+# Time: 150826 10:25:43
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.109815  Lock_time: 0.000139 Rows_sent: 1  Rows_examined: 28167
+SET timestamp=1440573943;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+--        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND `property_info`.`property_status` = 'Active'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND (fence_type = 'chain link')
+LIMIT 0, 1000;
+# Time: 150826 10:25:51
+# User@Host: root[root] @ localhost [127.0.0.1]
+# Query_time: 0.156573  Lock_time: 0.000127 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440573951;
+SELECT 
+    AVG(property_info.percentage_depreciation_value) as avg_percentage_diff,
+    COUNT(property_info.percentage_depreciation_value) as t_count
+FROM
+    `property_info`
+        LEFT JOIN
+    `property_info_details` ON property_info.property_id = property_info_details.property_id
+        LEFT JOIN
+    `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+        LEFT JOIN
+    `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE
+    property_info.estimated_price > 0
+        AND property_info_additional_brokerage_details.status = 'Closed'
+        AND `property_info`.`property_status` = 'Active'
+        AND property_info.property_updated_date >= DATE('2015-07-27')
+        AND (property_type = '1')
+        AND (fence_type = 'chain link')
+LIMIT 0, 1000;
+# Time: 150826 10:26:12
+# User@Host: root[root] @ localhost []
+# Query_time: 0.126364  Lock_time: 0.000156 Rows_sent: 0  Rows_examined: 4469
+SET timestamp=1440573972;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2003'   AND '2005'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.18'   AND '0.42' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2119.5'  AND '3532.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1181568'   AND '-115.1152712'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9470472'   AND '35.9499328' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.65  AND 3.85
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5706242';
+# Time: 150826 10:27:01
+# User@Host: root[root] @ localhost []
+# Query_time: 0.131918  Lock_time: 0.000120 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440574021;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2004'   AND '2006'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.102'   AND '0.238' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1417.5'  AND '2362.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1651618'   AND '-115.1622762'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2591582'   AND '36.2620438' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5710144';
+# Time: 150826 10:27:13
+# User@Host: root[root] @ localhost []
+# Query_time: 0.106823  Lock_time: 0.000092 Rows_sent: 1  Rows_examined: 5363
+SET timestamp=1440574033;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.09'   AND '0.21' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '949.5'  AND '1582.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2073828'   AND '-115.2044972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2481072'   AND '36.2509928' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5710455';
+# Time: 150826 10:27:35
+# User@Host: root[root] @ localhost []
+# Query_time: 0.112831  Lock_time: 0.000135 Rows_sent: 2  Rows_examined: 4477
+SET timestamp=1440574055;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '1998'   AND '2000'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.114'   AND '0.266' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1569.75'  AND '2616.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1185918'   AND '-115.1157062'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9856792'   AND '35.9885648' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5712064';
+# Time: 150826 10:27:56
+# User@Host: root[root] @ localhost []
+# Query_time: 0.112435  Lock_time: 0.000133 Rows_sent: 1  Rows_examined: 4470
+SET timestamp=1440574076;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '1998'   AND '2000'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.09'   AND '0.21' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2260.5'  AND '3767.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1058358'   AND '-115.1029502'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9917712'   AND '35.9946568' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 1.65  AND 3.85
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5713794';
+# Time: 150826 10:28:02
+# User@Host: root[root] @ localhost []
+# Query_time: 0.107087  Lock_time: 0.000133 Rows_sent: 4  Rows_examined: 5369
+SET timestamp=1440574082;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1991'   AND '1993'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1491.75'  AND '2486.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1663368'   AND '-115.1634512'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2517422'   AND '36.2546278' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5714098';
+# Time: 150826 10:28:57
+# User@Host: root[root] @ localhost []
+# Query_time: 0.111772  Lock_time: 0.000128 Rows_sent: 0  Rows_examined: 4470
+SET timestamp=1440574137;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2000'   AND '2002'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.114'   AND '0.266' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1944'  AND '3240' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1201028'   AND '-115.1172172'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9608942'   AND '35.9637798' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5717759';
+# Time: 150826 10:29:03
+# User@Host: root[root] @ localhost []
+# Query_time: 0.107853  Lock_time: 0.000095 Rows_sent: 0  Rows_examined: 4272
+SET timestamp=1440574143;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22279
+                           AND `property_info`.`year_biult_id`  BETWEEN '2005'   AND '2007'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.054'   AND '0.126' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1549.5'  AND '2582.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2439738'   AND '-115.2410882'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.3104922'   AND '36.3133778' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5717941';
+# Time: 150826 10:29:20
+# User@Host: root[root] @ localhost []
+# Query_time: 0.105093  Lock_time: 0.000090 Rows_sent: 1  Rows_examined: 5363
+SET timestamp=1440574160;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.102'   AND '0.238' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1349.25'  AND '2248.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1655668'   AND '-115.1626812'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2635872'   AND '36.2664728' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5719521';
+# Time: 150826 10:29:24
+# User@Host: root[root] @ localhost []
+# Query_time: 0.164409  Lock_time: 0.000131 Rows_sent: 1  Rows_examined: 30328
+SET timestamp=1440574164;
+SELECT AVG(property_info.percentage_depreciation_value) as avg_percentage_diff, COUNT(property_info.percentage_depreciation_value) as t_count
+FROM `property_info`
+LEFT JOIN `property_info_details` ON property_info.property_id = property_info_details.property_id
+LEFT JOIN `property_info_additional_details` ON property_info.property_id = property_info_additional_details.property_id
+LEFT JOIN `property_info_additional_brokerage_details` ON property_info.property_id = property_info_additional_brokerage_details.property_id
+WHERE property_info.estimated_price >0 AND property_info_additional_brokerage_details.status ='Closed' AND UPPER(`property_info`.`property_status`)='ACTIVE'  AND property_info.property_updated_date>=DATE('2015-07-27') AND (property_type = '1')  AND ((LOWER(fence_type) = LOWER('chain link')));
+# Time: 150826 10:30:42
+# User@Host: root[root] @ localhost []
+# Query_time: 0.696825  Lock_time: 0.000101 Rows_sent: 2838  Rows_examined: 301105
+SET timestamp=1440574242;
+SELECT 
+    `property_info`.`property_id`,
+    `fundamentals_factor`,
+    `conditional_factor`,
+    `property_type`,
+    `property_zipcode`,
+    `compass_point`,
+    `house_faces`,
+    `house_views`,
+    `street_name`,
+    `pool`,
+    `spa`,
+    `stories`,
+    `lot_description`,
+    `building_description`,
+    `carport_type`,
+    `converted_garage`,
+    `exterior_structure`,
+    `roof`,
+    `electrical_system`,
+    `plumbing_system`,
+    `built_desc`,
+    `exterior_grounds`,
+    `prop_desc`,
+    `over_all_property`,
+    `foreclosure`,
+    `short_sale`,
+    `sub_type`,
+
+    `studio`,
+    `condo_conversion`,
+    `association_features_available`,
+    `association_fee_1`,
+    `assessment`,
+    `sidlid`,
+    `parking_description`,
+    `fence_type`,
+    `court_approval`,
+    `bath_downstairs`,
+    `bedroom_downstairs`,
+    `great_room`,
+    `bath_downstairs_description`,
+    `flooring_description`,
+    `furnishings_description`,
+    `heating_features`,
+    `possession_description`,
+    `financing_considered`,
+    `reporeo`,
+    `litigation`
+FROM
+    `property_info`
+LEFT JOIN `property_info_details` USING (`property_id` )
+LEFT JOIN `property_info_additional_details` USING (`property_id` )
+LEFT JOIN `property_info_additional_brokerage_details` USING (`property_id` )
+WHERE
+    UPPER(`property_info`.`property_status`)='ACTIVE' AND
+    property_info.property_id > 0  AND property_info.property_updated_date>=DATE('2015-07-27')  AND property_info.estimated_price >0 AND property_info_additional_brokerage_details.status ='Closed'
+LIMIT 0, 3000;
+# Time: 150826 10:30:43
+# User@Host: root[root] @ localhost []
+# Query_time: 0.004231  Lock_time: 0.000033 Rows_sent: 7  Rows_examined: 8088
+SET timestamp=1440574243;
+SELECT house_views FROM `market_trend_table` `t` WHERE house_views!=''AND house_views IS NOT NULL GROUP BY house_views;
+# Time: 150826 10:31:01
+# User@Host: root[root] @ localhost []
+# Query_time: 0.105320  Lock_time: 0.000159 Rows_sent: 2  Rows_examined: 5367
+SET timestamp=1440574261;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2000'   AND '2002'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.132'   AND '0.308' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1666.5'  AND '2777.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1877378'   AND '-115.1848522'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2500372'   AND '36.2529228' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5674684';
+# Time: 150826 10:31:12
+# User@Host: root[root] @ localhost []
+# Query_time: 0.122814  Lock_time: 0.000134 Rows_sent: 3  Rows_examined: 5370
+SET timestamp=1440574272;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2002'   AND '2004'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.048'   AND '0.112' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1658.25'  AND '2763.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2082448'   AND '-115.2053592'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2546192'   AND '36.2575048' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5675070';
+# Time: 150826 10:31:22
+# User@Host: root[root] @ localhost []
+# Query_time: 0.165366  Lock_time: 0.000179 Rows_sent: 3  Rows_examined: 5369
+SET timestamp=1440574282;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1999'   AND '2001'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1170'  AND '1950' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1853648'   AND '-115.1824792'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2549852'   AND '36.2578708' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5676188';
+# Time: 150826 10:31:47
+# User@Host: root[root] @ localhost []
+# Query_time: 0.100675  Lock_time: 0.000168 Rows_sent: 2  Rows_examined: 5365
+SET timestamp=1440574307;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1989'   AND '1991'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.09'   AND '0.21' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1662'  AND '2770' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1900568'   AND '-115.1871712'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2399892'   AND '36.2428748' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5678062';
+# Time: 150826 10:32:04
+# User@Host: root[root] @ localhost []
+# Query_time: 0.128582  Lock_time: 0.000111 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440574324;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.126'   AND '0.294' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1186.5'  AND '1977.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1607368'   AND '-115.1578512'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2516932'   AND '36.2545788' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5678636';
+# Time: 150826 10:32:50
+# User@Host: root[root] @ localhost []
+# Query_time: 0.103560  Lock_time: 0.000090 Rows_sent: 2  Rows_examined: 5365
+SET timestamp=1440574370;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2004'   AND '2006'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2151.75'  AND '3586.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1644828'   AND '-115.1615972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2586202'   AND '36.2615058' 
+                          AND property_info.bedrooms BETWEEN 3.5  AND 6.5 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5681065';
+# Time: 150826 10:33:21
+# User@Host: root[root] @ localhost []
+# Query_time: 0.113011  Lock_time: 0.000145 Rows_sent: 3  Rows_examined: 5367
+SET timestamp=1440574401;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1995'   AND '1997'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.096'   AND '0.224' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1034.25'  AND '1723.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1875158'   AND '-115.1846302'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2572392'   AND '36.2601248' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5682831';
+# Time: 150826 10:33:34
+# User@Host: root[root] @ localhost []
+# Query_time: 0.110685  Lock_time: 0.000175 Rows_sent: 3  Rows_examined: 4473
+SET timestamp=1440574414;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2001'   AND '2003'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.108'   AND '0.252' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1176.75'  AND '1961.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1055308'   AND '-115.1026452'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9535932'   AND '35.9564788' 
+                          AND property_info.bedrooms BETWEEN 1.4  AND 2.6 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5683213';
+# Time: 150826 10:33:45
+# User@Host: root[root] @ localhost []
+# Query_time: 0.141896  Lock_time: 0.000158 Rows_sent: 1  Rows_examined: 5364
+SET timestamp=1440574425;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1991'   AND '1993'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.078'   AND '0.182' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1479.75'  AND '2466.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1650318'   AND '-115.1621462'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2497092'   AND '36.2525948' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5683408';
+# Time: 150826 10:34:10
+# User@Host: root[root] @ localhost []
+# Query_time: 0.123530  Lock_time: 0.000126 Rows_sent: 2  Rows_examined: 5365
+SET timestamp=1440574450;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1993'   AND '1995'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.096'   AND '0.224' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1675.5'  AND '2792.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1664818'   AND '-115.1635962'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2637242'   AND '36.2666098' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.65  AND 3.85
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5686289';
+# Time: 150826 10:34:28
+# User@Host: root[root] @ localhost []
+# Query_time: 0.103771  Lock_time: 0.000126 Rows_sent: 3  Rows_examined: 5370
+SET timestamp=1440574468;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2001'   AND '2003'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.042'   AND '0.098' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1204.5'  AND '2007.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2070628'   AND '-115.2041772'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2536802'   AND '36.2565658' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5687308';
+# Time: 150826 10:35:14
+# User@Host: root[root] @ localhost []
+# Query_time: 0.001189  Lock_time: 0.000045 Rows_sent: 39  Rows_examined: 39
+SET timestamp=1440574514;
+SELECT * FROM information_schema.CHARACTER_SETS;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000295  Lock_time: 0.000045 Rows_sent: 197  Rows_examined: 197
+SET timestamp=1440574514;
+SELECT * FROM information_schema.COLLATIONS;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.164390  Lock_time: 0.000056 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1440574514;
+SHOW TABLE STATUS FROM `bucontra_propertyhookup` LIKE 'property\_info%';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.003363  Lock_time: 0.000102 Rows_sent: 1  Rows_examined: 16
+SET timestamp=1440574514;
+SELECT (COUNT(`SCHEMA_NAME`) DIV 250) * 250 FROM `INFORMATION_SCHEMA`.`SCHEMATA` WHERE `SCHEMA_NAME` < 'bucontra_propertyhookup' ORDER BY `SCHEMA_NAME` ASC;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000309  Lock_time: 0.000095 Rows_sent: 16  Rows_examined: 32
+SET timestamp=1440574514;
+SELECT `SCHEMA_NAME` FROM `INFORMATION_SCHEMA`.`SCHEMATA` WHERE TRUE ORDER BY `SCHEMA_NAME` ASC LIMIT 0, 250;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000537  Lock_time: 0.000069 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574514;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000529  Lock_time: 0.000083 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574514;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# Time: 150826 10:35:15
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000252  Lock_time: 0.000078 Rows_sent: 16  Rows_examined: 32
+SET timestamp=1440574515;
+SELECT `SCHEMA_NAME` FROM `INFORMATION_SCHEMA`.`SCHEMATA` WHERE TRUE ORDER BY `SCHEMA_NAME` ASC LIMIT 0, 250;
+# Time: 150826 10:35:18
+# User@Host: root[root] @ localhost []
+# Query_time: 0.427875  Lock_time: 0.000032 Rows_sent: 100  Rows_examined: 100
+SET timestamp=1440574518;
+SHOW TABLE STATUS FROM `bucontra_propertyhookup`;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000249  Lock_time: 0.000046 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574518;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='EVENT';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000222  Lock_time: 0.000044 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574518;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000229  Lock_time: 0.000043 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574518;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='EVENT';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000225  Lock_time: 0.000044 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574518;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# Time: 150826 10:35:25
+# User@Host: root[root] @ localhost []
+# Query_time: 0.141545  Lock_time: 0.000124 Rows_sent: 0  Rows_examined: 5362
+SET timestamp=1440574525;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1998'   AND '2000'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1082.25'  AND '1803.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1863178'   AND '-115.1834322'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2514102'   AND '36.2542958' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5691616';
+# Time: 150826 10:35:27
+# User@Host: root[root] @ localhost []
+# Query_time: 0.599961  Lock_time: 0.000085 Rows_sent: 30  Rows_examined: 273232
+SET timestamp=1440574527;
+SELECT * FROM `property_info` ORDER BY `property_info`.`house_square_footage_gravity` DESC 
+ LIMIT 0, 30;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.164981  Lock_time: 0.000067 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1440574527;
+SHOW TABLE STATUS FROM `bucontra_propertyhookup` LIKE 'property\_info%';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.082582  Lock_time: 0.000085 Rows_sent: 1  Rows_examined: 273202
+SET timestamp=1440574527;
+SELECT COUNT(*) FROM `bucontra_propertyhookup`.`property_info`;
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000403  Lock_time: 0.000265 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1440574527;
+SELECT TABLE_NAME
+            FROM information_schema.VIEWS
+            WHERE TABLE_SCHEMA = 'bucontra_propertyhookup'
+                AND TABLE_NAME = 'property_info'
+                AND IS_UPDATABLE = 'YES';
+# Time: 150826 10:35:28
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000361  Lock_time: 0.000065 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574528;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000570  Lock_time: 0.000071 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574528;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# Time: 150826 10:35:30
+# User@Host: root[root] @ localhost []
+# Query_time: 0.136877  Lock_time: 0.000081 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1440574530;
+SHOW TABLE STATUS FROM `bucontra_propertyhookup` LIKE 'property\_info%';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000496  Lock_time: 0.000082 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574530;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# User@Host: root[root] @ localhost []
+# Query_time: 0.000457  Lock_time: 0.000070 Rows_sent: 1  Rows_examined: 225
+SET timestamp=1440574530;
+SELECT `PRIVILEGE_TYPE` FROM `INFORMATION_SCHEMA`.`USER_PRIVILEGES` WHERE GRANTEE='''root''@''localhost''' AND PRIVILEGE_TYPE='TRIGGER';
+# Time: 150826 10:35:40
+# User@Host: root[root] @ localhost []
+# Query_time: 0.100185  Lock_time: 0.000081 Rows_sent: 0  Rows_examined: 5362
+SET timestamp=1440574540;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2002'   AND '2004'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.078'   AND '0.182' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1050.75'  AND '1751.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1822828'   AND '-115.1793972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2559462'   AND '36.2588318' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5693151';
+# Time: 150826 10:35:55
+# User@Host: root[root] @ localhost []
+# Query_time: 0.102212  Lock_time: 0.000100 Rows_sent: 1  Rows_examined: 5363
+SET timestamp=1440574555;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1996'   AND '1998'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.084'   AND '0.196' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1318.5'  AND '2197.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1789938'   AND '-115.1761082'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2429572'   AND '36.2458428' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5694575';
+# Time: 150826 10:36:43
+# User@Host: root[root] @ localhost []
+# Query_time: 0.102849  Lock_time: 0.000109 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440574603;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1987'   AND '1989'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.216'   AND '0.504' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1304.25'  AND '2173.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2085808'   AND '-115.2056952'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2401002'   AND '36.2429858' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5698795';
+# Time: 150826 10:38:22
+# User@Host: root[root] @ localhost []
+# Query_time: 0.105416  Lock_time: 0.000130 Rows_sent: 0  Rows_examined: 4469
+SET timestamp=1440574702;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '2003'   AND '2005'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.18'   AND '0.42' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '2119.5'  AND '3532.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1181568'   AND '-115.1152712'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9470472'   AND '35.9499328' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.65  AND 3.85
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5706242';
+# Time: 150826 10:38:45
+# User@Host: root[root] @ localhost []
+# Query_time: 0.131756  Lock_time: 0.000118 Rows_sent: 4  Rows_examined: 5372
+SET timestamp=1440574725;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2003'   AND '2005'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.078'   AND '0.182' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1814.25'  AND '3023.75' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1886448'   AND '-115.1857592'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2597612'   AND '36.2626468' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.5  AND 3.5
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5707881';
+# Time: 150826 10:39:12
+# User@Host: root[root] @ localhost []
+# Query_time: 0.134066  Lock_time: 0.000121 Rows_sent: 0  Rows_examined: 5361
+SET timestamp=1440574752;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '2004'   AND '2006'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.102'   AND '0.238' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1417.5'  AND '2362.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1651618'   AND '-115.1622762'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2591582'   AND '36.2620438' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.2  AND 2.8
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5710144';
+# Time: 150826 10:39:24
+# User@Host: root[root] @ localhost []
+# Query_time: 0.140720  Lock_time: 0.000079 Rows_sent: 1  Rows_examined: 5363
+SET timestamp=1440574764;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22336
+                           AND `property_info`.`year_biult_id`  BETWEEN '1992'   AND '1994'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.09'   AND '0.21' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '949.5'  AND '1582.5' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.2073828'   AND '-115.2044972'   
+                           AND `property_info`.`getlatitude`  BETWEEN '36.2481072'   AND '36.2509928' 
+                          AND property_info.bedrooms BETWEEN 2.1  AND 3.9 AND property_info.bathrooms BETWEEN 1.05  AND 2.45
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5710455';
+# Time: 150826 10:39:47
+# User@Host: root[root] @ localhost []
+# Query_time: 0.113524  Lock_time: 0.000135 Rows_sent: 2  Rows_examined: 4477
+SET timestamp=1440574787;
+SELECT *
+                    FROM `property_info` 
+                    LEFT JOIN ( `property_info_details`, `property_info_additional_brokerage_details` )  
+                    ON ( `property_info_details`.`property_id` = `property_info`.`property_id` AND `property_info_additional_brokerage_details`.`property_id`=`property_info`.`property_id` )
+                    
+                          WHERE UPPER(`property_info`.`property_status`)='ACTIVE' 
+                          AND UPPER(`property_info_additional_brokerage_details`.`status`) NOT IN ('HISTORY','EXPIRED','AUCTION')
+                          AND `property_info`.`property_price` > 0 
+                          AND `property_info`.`property_expire_date` >='2015-08-26' 
+                          AND `property_info`.`property_updated_date` >='2015-02-06' 
+                          AND property_info.property_type = 1
+                          AND property_info.property_zipcode = 22241
+                           AND `property_info`.`year_biult_id`  BETWEEN '1998'   AND '2000'  
+                           AND `property_info`.`lot_acreage`  BETWEEN '0.114'   AND '0.266' 
+                           AND `property_info`.`house_square_footage`  BETWEEN '1569.75'  AND '2616.25' 
+                           AND `property_info`.`getlongitude`  BETWEEN '-115.1185918'   AND '-115.1157062'   
+                           AND `property_info`.`getlatitude`  BETWEEN '35.9856792'   AND '35.9885648' 
+                          AND property_info.bedrooms BETWEEN 2.8  AND 5.2 AND property_info.bathrooms BETWEEN 1.8  AND 4.2
+                          
+                           AND ( ( property_info_details.house_views NOT LIKE '%city%'  AND  property_info_details.house_views NOT LIKE '%golf%'  AND  property_info_details.house_views NOT LIKE '%lake%'  AND  property_info_details.house_views NOT LIKE '%mountain%'  AND  property_info_details.house_views NOT LIKE '%none%'  AND  property_info_details.house_views NOT LIKE '%park%'  AND  property_info_details.house_views NOT LIKE '%strip%' ) OR property_info_details.house_views IS NULL )
+                          AND property_info.sub_type = 'Detached'
+                          AND `property_info`.`property_id` != '5712064';
